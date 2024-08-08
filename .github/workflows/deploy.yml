@@ -34,8 +34,9 @@ jobs:
       run: terraform validate
 
     - name: Plan Terraform
+      working-directory: ./Terraform
       run: terraform plan -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out=tfplan
 
     - name: Apply Terraform
-      working-directory: ./path/to/terraform/files
+      working-directory: ./Terraform
       run: terraform apply -input=false tfplan
