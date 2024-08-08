@@ -28,13 +28,17 @@ jobs:
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Initialize Terraform
+      working-directory: ./path/to/terraform/files
       run: terraform init
 
     - name: Validate Terraform
+      working-directory: ./path/to/terraform/files
       run: terraform validate
 
     - name: Plan Terraform
+      working-directory: ./path/to/terraform/files
       run: terraform plan -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out=tfplan
 
     - name: Apply Terraform
+      working-directory: ./path/to/terraform/files
       run: terraform apply -input=false tfplan
