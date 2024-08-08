@@ -31,15 +31,15 @@ jobs:
     - name: Plan Terraform
       working-directory: ./Terraform
       run: |
-         terraform init -backend-config="bucket=terraform-123930" -backend-config="prefix=terraform-123930/state"
+         terraform init -backend-config="credentials=${{ secrets.GCP_PROJECT_ID }}" -backend-config="bucket=terraform-123930" -backend-config="prefix=terraform-123930/state"
          terraform validate
-         terraform plan -var-file "${_BRANCH_NAME}".tfvars -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out tf.plan
+         terraform plan -var-file "main.tfvars" -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out tf.plan
         
 
     - name: Apply Terraform
       working-directory: ./Terraform
       run: |
-         terraform init -backend-config="bucket=terraform-123930" -backend-config="prefix=terraform-123930/state"
+         terraform init -backend-config="credentials=${{ secrets.GCP_PROJECT_ID }}" -backend-config="bucket=terraform-123930" -backend-config="prefix=terraform-123930/state"
          terraform validate
-         terraform plan -var-file "${_BRANCH_NAME}".tfvars -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out tf.plan
+         terraform plan -var-file "main.tfvars" -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out tf.plan
          terraform apply -auto-approve -input=false tfplan
