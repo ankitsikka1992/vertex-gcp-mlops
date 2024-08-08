@@ -35,8 +35,12 @@ jobs:
 
     - name: Plan Terraform
       working-directory: ./Terraform
-      run: terraform plan -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out=tfplan
+      run: |
+        terraform init
+        terraform plan -var "project_id=${{ secrets.GCP_PROJECT_ID }}" -out=tfplan
 
     - name: Apply Terraform
       working-directory: ./Terraform
-      run: terraform apply -input=false tfplan
+      run: |
+        terraform init
+        terraform apply -input=false tfplan
