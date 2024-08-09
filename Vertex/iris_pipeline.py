@@ -1,11 +1,10 @@
-import kfp
 from kfp.v2 import dsl
 from kfp.v2.dsl import Dataset, Model, Output
 from kfp.v2 import compiler
 
 
 @dsl.component(
-    base_image="python:3.9",
+    base_image="python:3.10",
     packages_to_install=["pandas", "scikit-learn", "joblib"]
 )
 def train_model(output_model: Output[Model]):
