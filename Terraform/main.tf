@@ -2,7 +2,6 @@ terraform {
   backend "gcs" {
     bucket  = ""
     prefix  = ""
-    credentials = ""
   }
 }
 
@@ -10,6 +9,7 @@ terraform {
 provider "google" {
   project = var.project_id
   region  = var.region
+  credentials=var.credentials
 }
 
 # Variables for project, region, and zone
