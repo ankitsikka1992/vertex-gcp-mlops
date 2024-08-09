@@ -6,7 +6,6 @@ on:
       - main  # Trigger on push to main branch
     paths:
       - 'Vertex/**'
-      - '.github/Workflows/vertex.yml'  # Trigger only when pipeline code is updated
   workflow_dispatch:  # Allow manual triggering of the workflow
 
 jobs:
