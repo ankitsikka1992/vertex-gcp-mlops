@@ -31,8 +31,7 @@ jobs:
     - name: Initialize Terraform
       working-directory: ./Terraform
       run: |
-            terraform init -backend-config="credentials=$HOME/gcloud.json"\
-                           -backend-config="bucket=terraform-123930" \
+            terraform init -backend-config="bucket=terraform-123930" \
                            -backend-config="prefix=terraform-123930/state"
 
     - name: Validate Terraform
@@ -43,6 +42,7 @@ jobs:
       working-directory: ./Terraform
       run: |
          terraform plan -var-file="main.tfvars" \
+                        -var="credentials=$HOME/gcloud.json"
                         -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
                         -out=tfplan
 
