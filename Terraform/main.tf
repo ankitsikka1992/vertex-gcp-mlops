@@ -17,6 +17,10 @@ variable "project_id" {
   description = "The ID of the project in which to create resources."
 }
 
+variable "credentials" {
+  description = "Creds File"
+  default     = "abc.json"
+}
 variable "region" {
   description = "The region where resources will be created."
   default     = "us-central1"
