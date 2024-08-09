@@ -12,6 +12,7 @@ provider "google" {
   credentials=var.credentials
 }
 
+
 # Variables for project, region, and zone
 variable "project_id" {
   description = "The ID of the project in which to create resources."
