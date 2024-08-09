@@ -34,30 +34,30 @@ jobs:
 
         terraform plan -var-file="main.tfvars" \
                         -var="credentials=$HOME/gcloud.json"
-                        -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
+                        -var="project=${{ secrets.GCP_PROJECT_ID }}" \
                         -out=tfplan
 
         terraform apply -input=false -auto-approve tfplan                                   
 
-    - name: Initialize Terraform
-      working-directory: ./Terraform
-      run: |
-            terraform init -backend-config="bucket=terraform-123930" \
-                           -backend-config="prefix=terraform-123930/state"
+    # - name: Initialize Terraform
+    #   working-directory: ./Terraform
+    #   run: |
+    #         terraform init -backend-config="bucket=terraform-123930" \
+    #                        -backend-config="prefix=terraform-123930/state"
 
-    - name: Validate Terraform
-      working-directory: ./Terraform
-      run: terraform validate
+    # - name: Validate Terraform
+    #   working-directory: ./Terraform
+    #   run: terraform validate
 
-    - name: Plan Terraform
-      working-directory: ./Terraform
-      run: |
-         terraform plan -var-file="main.tfvars" \
-                        -var="credentials=$HOME/gcloud.json"
-                        -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
-                        -out=tfplan
+    # - name: Plan Terraform
+    #   working-directory: ./Terraform
+    #   run: |
+    #      terraform plan -var-file="main.tfvars" \
+    #                     -var="credentials=$HOME/gcloud.json"
+    #                     -var="project_id=${{ secrets.GCP_PROJECT_ID }}" \
+    #                     -out=tfplan
 
-    - name: Apply Terraform
-      working-directory: ./Terraform
-      run: |
-         terraform apply -input=false -auto-approve tfplan
+    # - name: Apply Terraform
+    #   working-directory: ./Terraform
+    #   run: |
+    #      terraform apply -input=false -auto-approve tfplan
