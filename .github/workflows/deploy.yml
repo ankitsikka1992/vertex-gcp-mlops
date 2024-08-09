@@ -25,15 +25,14 @@ jobs:
       run: |
         echo "${GCP_CREDS}" > $HOME/gcloud.json
         export GOOGLE_APPLICATION_CREDENTIALS="$HOME/gcloud.json"
-        gcloud auth application-default login
-        #gcloud auth activate-service-account --key-file=$HOME/gcloud.json
+        gcloud auth activate-service-account --key-file=$HOME/gcloud.json
         gcloud config set project ${{ secrets.GCP_PROJECT_ID }}
 
     - name: Initialize Terraform
       working-directory: ./Terraform
       run: |
-        #  -backend-config="credentials=$HOME/gcloud.json" \
-            terraform init -backend-config="bucket=terraform-123930" \
+            terraform init -backend-config="credentials=$HOME/gcloud.json"\
+                           -backend-config="bucket=terraform-123930" \
                            -backend-config="prefix=terraform-123930/state"
 
     - name: Validate Terraform

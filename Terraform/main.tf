@@ -2,7 +2,7 @@ terraform {
   backend "gcs" {
     bucket  = ""
     prefix  = ""
-    credntials = ""
+    credentials = ""
   }
 }
 
