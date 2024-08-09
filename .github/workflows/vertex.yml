@@ -31,12 +31,12 @@ jobs:
 
         python3 --version
 
-        python3 -m pip install setuptools
+        python3.10 -m pip install setuptools
 
-        python3 -m pip install -r requirements.txt
+        python3.10 -m pip install -r requirements.txt
 
 
-        python3 iris_pipeline.py  # Adjust this path if necessary
+        python3.10 iris_pipeline.py  # Adjust this path if necessary
 
         gcloud ai pipelines upload --project=$PROJECT_ID --location=$LOCATION --display-name=iris-classification-pipeline --pipeline-file=pipeline/iris_pipeline.json
         gcloud ai pipelines run --project=$PROJECT_ID --location=$LOCATION --pipeline=iris-classification-pipeline --pipeline-root=gs://your-gcs-bucket/pipeline_root/ --job-id=iris_pipeline_run_$(date +%Y%m%d%H%M%S)
