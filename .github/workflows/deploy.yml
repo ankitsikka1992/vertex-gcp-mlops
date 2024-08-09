@@ -1,4 +1,4 @@
-name: Deploy Vertex AI Environment
+name: Execute Terraform
 
 on:
   push:
