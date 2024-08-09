@@ -30,7 +30,8 @@ jobs:
     - name: Initialize Terraform
       working-directory: ./Terraform
       run: |
-         terraform init -backend-config="bucket=terraform-123930" \
+         terraform init -backend-config="credentials=$HOME/gcloud.json" \
+                        -backend-config="bucket=terraform-123930" \
                         -backend-config="prefix=terraform-123930/state"
 
     - name: Validate Terraform
